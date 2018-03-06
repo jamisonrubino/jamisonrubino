@@ -14,14 +14,9 @@ header {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 130px;
   padding: 40px 20px 20px 20px;
   color: white;
 }
@@ -32,15 +27,6 @@ header {
 
 .App-intro {
   font-size: large;
-}
-
-.selected {
-  color: gold;
-}
-
-.content {
-  height: 100%;
-  overflow: auto;
 }
 
 h1 {
@@ -54,20 +40,72 @@ nav, header h1, nav ul li {
 nav ul li {
   list-style-type: none;
   cursor: pointer;
+  font-size: 1.15em;
+  position: relative;
+}
+
+nav ul li::after {
+  content: "";
+  position: absolute;
+  background: gold;
+  width: 0;
+  height: 3px;
+  display: block;
+  margin-top: -1px;
+  transition: 0.3s width;
+}
+
+nav ul li:hover::after {
+  content: "";
+  position: absolute;
+  background: gold;
+  width: 30px;
+  height: 3px;
+  display: block;
+  margin-top: -1px;
+}
+
+nav ul li.selected::after {
+  content: "";
+  position: absolute;
+  background: gold;
+  width: 100%;
+  height: 3px;
+  display: block;
+  margin-top: -1px;
 }
 
 nav ul li:not(:last-child) {
-  padding-right: 10px;
+  margin-right: 10px;
+}
+
+.selected {
+  color: gold;
+}
+
+.selected::after {
+  content: "";
+  position: absolute;
+  background: gold;
+  width: 30px;
+  height: 3px;
+  display: block;
+  margin-top: -3px;
 }
 
 .content {
   width: 100%;
   height: 100%;
   background: #ddd;
+  overflow: auto;
 }
 
 .content h1 {
   margin-top: 30px;
+}
+
+.ul__portfolio {
+  padding: 0;
 }
 
 .ul__portfolio li {
@@ -76,13 +114,305 @@ nav ul li:not(:last-child) {
   width: 250px;
   height: 250px;
   border: 1px solid #777;
+  margin-bottom: 30px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ul__portfolio li::before {
+  position: absolute;
+  height: 0;
+  width: 100%;
+  background: rgba(34,34,34,0.85);
+  bottom: 0;
+  left: 0;
+  transition: 0.4s height;
+  color: white;
+  box-sizing: border-box;
+  padding-top: 10px;
 }
 
 .ul__portfolio li:not(:last-child) {
   margin-right: 20px;
 }
 
+li.portfolio__li--blocchat {
+  background-image: url('./Components/portfolio/blocchat/img/bloc_chat_index.jpg');
+  background-size: contain;
+}
+
+li.portfolio__li--blocjams {
+  background-image: url('./Components/portfolio/blocjams/img/bloc_jams_index.jpg');
+  background-size: contain;
+}
+
+li.portfolio__li--traveltracks {
+  background-image: url('./Components/portfolio/traveltracks/img/travel_tracks_index.jpg');
+  background-size: contain;
+}
+
+
+.ul__portfolio li.portfolio__li--blocchat::before {
+  content: "Bloc Chat";
+}
+
+.ul__portfolio li.portfolio__li--traveltracks::before {
+  content: "TravelTracks";
+}
+
+.ul__portfolio li.portfolio__li--blocjams::before {
+  content: "Bloc Jams";
+}
+
+.ul__portfolio li:hover::before {
+  position: absolute;
+  height: 45px;
+  width: 100%;
+  opacity: 1;
+  background: rgba(34,34,34,0.85);
+  bottom: 0;
+  left: 0;
+}
+
+.ul__portfolio li.portfolio__li--selected::before {
+  position: absolute;
+  height: 45px;
+  width: 100%;
+  background: rgba(34,34,34,0.85);
+  bottom: 0;
+  left: 0;
+}
+
+.portfolio__item__body {
+  padding: 30px;
+  background: #222;
+  color: white;
+  position: relative;
+}
+
+section {
+  width: 960px;
+  margin: 0 auto;
+  padding: 30px 0;
+  -webkit-animation: roll-in 0.55s 1; /* Safari 4+ */
+  -moz-animation:    roll-in 0.55s 1; /* Fx 5+ */
+  -o-animation:      roll-in 0.55s 1; /* Opera 12+ */
+  animation:         roll-in 0.55s 1; /* IE 10+, Fx 29+ */
+}
+
+
+.blocchat::before {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: #222;
+  transform: rotate(45deg);
+  top: -15px;
+  left: calc(50% - 281px);
+}
+.traveltracks::before {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: #222;
+  transform: rotate(45deg);
+  top: -15px;
+  left: calc(50% - 10px);
+}
+.blocjams::before {
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: #222;
+  transform: rotate(45deg);
+  top: -15px;
+  left: calc(50% + 260px);
+}
+
+[class^="portfolio__carousel__wrap--"] {
+  height: 400px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.portfolio__carousel__wrap--traveltracks {
+  /*width: imageNum*600px; */
+}
+
+.portfolio__carousel__wrap--blocjams {
+  /*width: imageNum*600px; */
+}
+
+.portfolio__carousel__wrap--blocchat {
+  /*width: imageNum*600px; */
+}
+
+
+/*        CAROUSEL        */
+
+.carousel__wrap {
+  width: 745px;
+  height: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 3px;
+}
+
+.carousel__arrow--left {
+  content: "\2039";
+  position: absolute;
+  left: 0;
+  top: calc(50% - 60px);
+  font-size: 100px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  background: rgba(0,0,0,0.4);
+  display: inline-block;
+  vertical-align: middle;
+  z-index: 3;
+  padding-bottom: 10px;
+}
+
+.carousel__arrow--right {
+  content: "\203A";
+  position: absolute;
+  right: 0;
+  top: calc(50% - 60px);
+  font-size: 100px;
+  cursor: pointer;
+  border-radius: 4px 0 0 4px;
+  background: rgba(0,0,0,0.4);
+  z-index: 3;
+  padding-bottom: 10px;
+}
+
+.carousel {
+  display: inline-block;
+  transition: margin 0.4s;
+  transition-timing-function: ease-out;
+  position: relative;
+}
+
+.carousel__item {
+  width: 745px;
+  height: 500px;
+  display: inline-block;
+  float: left;
+}
+
+.carousel__item img {
+  width: 745px;
+  display: inline-block;
+}
+
+.carousel__caption {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  width: 745px;
+  padding: 10px;
+}
+
+.portfolio__carousel {
+  width: 600px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.portfolio__carousel__slide {
+  width: 600px;
+  height: 400px;
+  background: rgba(255,255,255,0.8);
+  display: inline-block;
+  float: left;
+}
+
+.portfolio__carousel__back, .portfolio__carousel__forward {
+  position: absolute;
+  height: 100%;
+  width: 50px;
+  background: rgba(34,34,34,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8em;
+  cursor: pointer;
+}
+
+.portfolio__carousel__back {
+  left: 0;
+}
+
+.portfolio__carousel__forward {
+  right: 0;
+}
+
+.portfolio__carousel__back:hover, .portfolio__carousel__forward:hover {
+  background: rgba(34,34,34,0.6);
+}
+
+.portfolio__carousel__back:active, .portfolio__carousel__forward:active {
+  background: rgba(34,34,34,0.8);
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+
+@-webkit-keyframes roll-in {
+  0%   {
+    height: 0;
+    margin-top: -20px;
+    /* opacity: 0; */
+  }
+  100% {
+    height: 100%;
+    margin-top: 0;
+    /* opacity: 1; */
+   }
+}
+@-moz-keyframes roll-in {
+  0%   {
+    height: 0;
+    margin-top: -20px;
+    /* opacity: 0; */
+  }
+  100% {
+    height: 100%;
+    margin-top: 0;
+    /* opacity: 1; */
+   }
+}
+@-o-keyframes roll-in {
+  0%   {
+    height: 0;
+    margin-top: -20px;
+    /* opacity: 0; */
+  }
+  100% {
+    height: 100%;
+    margin-top: 0;
+    /* opacity: 1; */
+   }
+}
+@keyframes roll-in {
+  0%   {
+    height: 0;
+    margin-top: -20px;
+    /* opacity: 0; */
+  }
+  100% {
+    height: 100%;
+    margin-top: 0;
+    /* opacity: 1; */
+   }
 }

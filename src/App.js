@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery'
 import './App.css';
 import Portfolio from './Components/Portfolio'
 import Studies from './Components/Studies'
@@ -22,16 +23,16 @@ class App extends Component {
             <ul>
               <li
                 onClick={()=>this.setState({selectedNavItem: "about"})}
-                className={"pull-right " + (this.state.selectedNavItem === 'about' ? 'selected' : '')}>About</li>
+                className={(this.state.selectedNavItem === 'about' ? 'selected' : '')}>About</li>
               <li
                 onClick={()=>this.setState({selectedNavItem: "portfolio"})}
-                className={"pull-right " + (this.state.selectedNavItem === 'portfolio' ? 'selected' : '')}>Portfolio</li>
+                className={(this.state.selectedNavItem === 'portfolio' ? 'selected' : '')}>Portfolio</li>
               <li
                 onClick={()=>this.setState({selectedNavItem: "studies"})}
-                className={"pull-right " + (this.state.selectedNavItem === 'studies' ? 'selected' : '')}>Studies</li>
+                className={(this.state.selectedNavItem === 'studies' ? 'selected' : '')}>Studies</li>
               <li
                 onClick={()=>this.setState({selectedNavItem: "resources"})}
-                className={"pull-right " + (this.state.selectedNavItem === 'resources' ? 'selected' : '')}>Resources</li>
+                className={(this.state.selectedNavItem === 'resources' ? 'selected' : '')}>Resources</li>
             </ul>
           </nav>
         </header>
