@@ -10,6 +10,14 @@ html, body {
 header {
 }
 
+header h1 {
+  margin: 0 40px;
+}
+
+a.header__h1 {
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
 }
@@ -20,6 +28,8 @@ header {
   padding: 40px 20px 20px 20px;
   color: white;
 }
+
+
 
 .App-title {
   font-size: 1.5em;
@@ -35,6 +45,11 @@ h1 {
 
 nav, header h1, nav ul li {
   display: inline-block;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
@@ -138,17 +153,17 @@ nav ul li:not(:last-child) {
 }
 
 li.portfolio__li--blocchat {
-  background-image: url('./Components/portfolio/blocchat/img/bloc_chat_index.jpg');
-  background-size: contain;
+  /* background-image: url('../public/portfolio/blocchat/img/bloc_chat_index.jpg'); */
+  background-size: cover;
 }
 
 li.portfolio__li--blocjams {
-  background-image: url('./Components/portfolio/blocjams/img/bloc_jams_index.jpg');
+  /* background-image: url('../public/portfolio/blocjams/img/bloc_jams_index.jpg'); */
   background-size: contain;
 }
 
 li.portfolio__li--traveltracks {
-  background-image: url('./Components/portfolio/traveltracks/img/travel_tracks_index.jpg');
+  /* background-image: url('../public/portfolio/traveltracks/img/2.jpg'); */
   background-size: contain;
 }
 
@@ -189,6 +204,10 @@ li.portfolio__li--traveltracks {
   background: #222;
   color: white;
   position: relative;
+}
+
+.portfolio__p {
+  margin-bottom: 25px;
 }
 
 section {

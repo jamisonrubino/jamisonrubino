@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 
 
-class Resources extends Component {
+export default class Contact extends Component {
   render() {
-    if (this.props.selected==="resources") {
+    if (this.props.selected==="services") {
       return (
-        <div className="resources">
+        <div className="services">
           <h1>{this.props.selected.slice(0,1).toUpperCase() + this.props.selected.slice(1)}</h1>
-
-
-
-
 
 
         </div>
@@ -20,5 +16,3 @@ class Resources extends Component {
     }
   }
 }
-
-export default Resources;

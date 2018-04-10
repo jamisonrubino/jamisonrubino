@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 
-class Studies extends Component {
+export default class Contact extends Component {
   render() {
-    if (this.props.selected==="studies") {
+    if (this.props.selected==="contact") {
       return (
-        <div className="studies">
+        <div className="contact">
           <h1>{this.props.selected.slice(0,1).toUpperCase() + this.props.selected.slice(1)}</h1>
-          
+
 
 
 
@@ -20,5 +20,3 @@ class Studies extends Component {
     }
   }
 }
-
-export default Studies;

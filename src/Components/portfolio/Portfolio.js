@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import BlocChat from './portfolio/BlocChat'
-import BlocJams from './portfolio/BlocJams'
-import TravelTracks from './portfolio/TravelTracks'
+import axios from 'axios'
+import BlocChat from './blocchat/BlocChat'
+import BlocJams from './blocjams/BlocJams'
+import TravelTracks from './traveltracks/TravelTracks'
 
 
 export default class Portfolio extends Component {
@@ -11,6 +12,13 @@ export default class Portfolio extends Component {
       portfolioPiece: null,
       numSlides: null
     }
+  }
+
+  componentDidMount() {
+    console.log('fetch:')
+    fetch('/')
+    .then(res=>res.json())
+    .then(file=>console.log(file))
   }
 
   render() {
