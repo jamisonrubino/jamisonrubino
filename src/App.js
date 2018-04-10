@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import $ from 'jquery'
+// import $ from 'jquery'
 import './App.css';
-import Portfolio from './Components/Portfolio'
-import Studies from './Components/Studies'
-import Resources from './Components/Resources'
+import Portfolio from './Components/portfolio/Portfolio'
+import Services from './Components/Services'
+import Contact from './Components/Contact'
 import About from './Components/About'
 
 class App extends Component {
@@ -12,27 +12,32 @@ class App extends Component {
     this.state = {
       selectedNavItem: null
     }
+    this.setNavItem = this.setNavItem.bind(this)
+  }
+
+  setNavItem(navItem) {
+    this.setState({selectedNavItem: navItem})
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Jamison Rubino</h1>
+          <h1><a className="header__h1" onClick={()=>this.setState({selectedNavItem: null})}>Jamison Rubino</a></h1>
           <nav>
             <ul>
               <li
-                onClick={()=>this.setState({selectedNavItem: "about"})}
+                onClick={()=>this.setNavItem("about")}
                 className={(this.state.selectedNavItem === 'about' ? 'selected' : '')}>About</li>
               <li
-                onClick={()=>this.setState({selectedNavItem: "portfolio"})}
+                onClick={()=>this.setNavItem("portfolio")}
                 className={(this.state.selectedNavItem === 'portfolio' ? 'selected' : '')}>Portfolio</li>
               <li
-                onClick={()=>this.setState({selectedNavItem: "studies"})}
-                className={(this.state.selectedNavItem === 'studies' ? 'selected' : '')}>Studies</li>
+                onClick={()=>this.setNavItem("services")}
+                className={(this.state.selectedNavItem === 'services' ? 'selected' : '')}>Services</li>
               <li
-                onClick={()=>this.setState({selectedNavItem: "resources"})}
-                className={(this.state.selectedNavItem === 'resources' ? 'selected' : '')}>Resources</li>
+                onClick={()=>this.setNavItem("contact")}
+                className={(this.state.selectedNavItem === 'contact' ? 'selected' : '')}>Contact</li>
             </ul>
           </nav>
         </header>
@@ -43,10 +48,10 @@ class App extends Component {
           <Portfolio
             selected={this.state.selectedNavItem}
             />
-          <Studies
+          <Services
             selected={this.state.selectedNavItem}
             />
-          <Resources
+          <Contact
             selected={this.state.selectedNavItem}
             />
         </div>
