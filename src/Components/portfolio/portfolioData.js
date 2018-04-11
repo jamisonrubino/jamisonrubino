@@ -18,7 +18,7 @@ export default {
         "With album and song data retrieved, we attach event handlers to each song row in the album song list, so play buttons appear on hover, and toggle between play/pause when clicked. When a song plays, the player bar updates with the song’s name, artist, album, total time and time elapsed. The player bar also allows you to seek by dragging the seek thumb to your desired time, just as the volume slider allows you to set the current volume."
       ],
       "numSlides": 3,
-      "summary": "Bloc students, to practice Javascript and JQuery, and to introduce AngularJS, build a simple Spotify-style music library with the Buzz engine",
+      "summary": "Bloc students, to practice Javascript and JQuery, and to introduce AngularJS, build a simple Spotify-style music library with the Buzz engine.",
       "slug": "blocjams",
       "coverImg": "/portfolio/blocjams/img/cover.jpg"
     },

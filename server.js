@@ -26,13 +26,14 @@ app.use('/public', express.static('public'))
 app.get('/traveltracks_img', (req, res) => {
   var imgArr = [1,2,3]
   res.send({"images": imgArr})
+
   fs.readdir('/public/portfolio/traveltracks/img/', (err, imgs) => {
     console.log(imgs)
     imgs.forEach(img=>{
       imgArr.push(file)
     })
-
   })
+
 })
 
 app.get('/pf', (req,res)=>{

@@ -17,15 +17,21 @@ class App extends Component {
     this.setNavItem = this.setNavItem.bind(this)
   }
 
+  componentDidMount() {
+    console.log(this.props)
+  }
+
   setNavItem(navItem) {
     this.setState({selectedNavItem: navItem})
   }
+
+
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1><a className="header__h1" onClick={()=>this.setState({selectedNavItem: null})}>Jamison Rubino</a></h1>
+          <h1><Link to="/" className="header__h1" onClick={()=>this.setState({selectedNavItem: null})}>Jamison Rubino</Link></h1>
           <nav>
             <ul>
               <Link to="/about"><li

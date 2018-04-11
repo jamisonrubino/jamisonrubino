@@ -53,17 +53,17 @@ export default class Portfolio extends Component {
           <div className="portfolio__div__wrap">
             <BlocChat
               selected={this.props.match.params.piece}
-              numSlides={portfolioData.portfolioPieces.filter(obj=>obj.name==="BlocChat").numSlides}
+              numSlides={portfolioData.portfolioPieces.filter(piece=>piece.slug==="blocchat").numSlides}
               piece={portfolioData.portfolioPieces.filter(piece=>piece.slug==="blocchat")[0]}
               />
             <TravelTracks
               selected={this.props.match.params.piece}
-              numSlides={portfolioData.portfolioPieces.filter(obj=>obj.name==="TravelTracks").numSlides}
+              numSlides={portfolioData.portfolioPieces.filter(piece=>piece.slug==="traveltracks").numSlides}
               piece={portfolioData.portfolioPieces.filter(piece=>piece.slug==="traveltracks")[0]}
               />
             <BlocJams
               selected={this.props.match.params.piece}
-              numSlides={portfolioData.portfolioPieces.filter(obj=>obj.name==="BlocJams").numSlides}
+              numSlides={portfolioData.portfolioPieces.filter(piece=>piece.slug==="blocjams").numSlides}
               piece={portfolioData.portfolioPieces.filter(piece=>piece.slug==="blocjams")[0]}
               />
           </div>
