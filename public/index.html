@@ -11,25 +11,10 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="stylesheet" href="../src/bootstrap/css/bootstrap.min.css">
-    <script src="../src/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../src/jquery/jquery.min.js"></script>
-    <script src="../src/require/require.js"></script>
-    <script type="text/javascript">
+    <script src="%PUBLIC_URL%/include/bootstrap.min.js"></script>
+    <script src="%PUBLIC_URL%/include/jquery.min.js"></script>
+    <script src="%PUBLIC_URL%/include/require.js"></script>
 
-      window.$ = window.jQuery = require('jquery')
-          // Activate Carousel
-      $("#myCarousel").carousel();
-
-      // Enable Carousel Indicators
-      $(".item").click(function(){
-        $("#myCarousel").carousel(1);
-      });
-
-      // Enable Carousel Controls
-      $(".left").click(function(){
-        $("#myCarousel").carousel("prev");
-      });
-    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.

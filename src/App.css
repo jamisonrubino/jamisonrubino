@@ -10,6 +10,20 @@ html, body {
 header {
 }
 
+header h1 {
+  margin: 0 40px;
+}
+
+a.header__h1 {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+a.header__h1:active {
+  color: gold;
+}
+
 .App {
   text-align: center;
 }
@@ -20,6 +34,8 @@ header {
   padding: 40px 20px 20px 20px;
   color: white;
 }
+
+
 
 .App-title {
   font-size: 1.5em;
@@ -37,11 +53,18 @@ nav, header h1, nav ul li {
   display: inline-block;
 }
 
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
 nav ul li {
   list-style-type: none;
   cursor: pointer;
   font-size: 1.15em;
   position: relative;
+  color: white;
+  margin-right: 12px;
 }
 
 nav ul li::after {
@@ -59,7 +82,7 @@ nav ul li:hover::after {
   content: "";
   position: absolute;
   background: gold;
-  width: 30px;
+  width: 20px;
   height: 3px;
   display: block;
   margin-top: -1px;
@@ -108,6 +131,10 @@ nav ul li:not(:last-child) {
   padding: 0;
 }
 
+.ul__portfolio a:not(:last-child) {
+  margin-right: 15px;
+}
+
 .ul__portfolio li {
   list-style-type: none;
   display: inline-block;
@@ -125,12 +152,13 @@ nav ul li:not(:last-child) {
   height: 0;
   width: 100%;
   background: rgba(34,34,34,0.85);
-  bottom: 0;
+  bottom: -5px;
   left: 0;
-  transition: 0.4s height;
+  transition: 0.4s height, 0.4s bottom;
   color: white;
   box-sizing: border-box;
-  padding-top: 10px;
+  padding: 5px 0;
+  height: 0;
 }
 
 .ul__portfolio li:not(:last-child) {
@@ -138,17 +166,17 @@ nav ul li:not(:last-child) {
 }
 
 li.portfolio__li--blocchat {
-  background-image: url('./Components/portfolio/blocchat/img/bloc_chat_index.jpg');
-  background-size: contain;
+  /* background-image: url('../public/portfolio/blocchat/img/bloc_chat_index.jpg'); */
+  background-size: cover;
 }
 
 li.portfolio__li--blocjams {
-  background-image: url('./Components/portfolio/blocjams/img/bloc_jams_index.jpg');
+  /* background-image: url('../public/portfolio/blocjams/img/bloc_jams_index.jpg'); */
   background-size: contain;
 }
 
 li.portfolio__li--traveltracks {
-  background-image: url('./Components/portfolio/traveltracks/img/travel_tracks_index.jpg');
+  /* background-image: url('../public/portfolio/traveltracks/img/2.jpg'); */
   background-size: contain;
 }
 
@@ -167,7 +195,7 @@ li.portfolio__li--traveltracks {
 
 .ul__portfolio li:hover::before {
   position: absolute;
-  height: 45px;
+  height: 30px;
   width: 100%;
   opacity: 1;
   background: rgba(34,34,34,0.85);
@@ -177,7 +205,7 @@ li.portfolio__li--traveltracks {
 
 .ul__portfolio li.portfolio__li--selected::before {
   position: absolute;
-  height: 45px;
+  height: 30px;
   width: 100%;
   background: rgba(34,34,34,0.85);
   bottom: 0;
@@ -189,6 +217,10 @@ li.portfolio__li--traveltracks {
   background: #222;
   color: white;
   position: relative;
+}
+
+.portfolio__p {
+  margin-bottom: 25px;
 }
 
 section {
@@ -230,7 +262,7 @@ section {
   background: #222;
   transform: rotate(45deg);
   top: -15px;
-  left: calc(50% + 260px);
+  left: calc(50% + 255px);
 }
 
 [class^="portfolio__carousel__wrap--"] {
@@ -263,34 +295,6 @@ section {
   border-radius: 3px;
 }
 
-.carousel__arrow--left {
-  content: "\2039";
-  position: absolute;
-  left: 0;
-  top: calc(50% - 60px);
-  font-size: 100px;
-  cursor: pointer;
-  border-radius: 0 4px 4px 0;
-  background: rgba(0,0,0,0.4);
-  display: inline-block;
-  vertical-align: middle;
-  z-index: 3;
-  padding-bottom: 10px;
-}
-
-.carousel__arrow--right {
-  content: "\203A";
-  position: absolute;
-  right: 0;
-  top: calc(50% - 60px);
-  font-size: 100px;
-  cursor: pointer;
-  border-radius: 4px 0 0 4px;
-  background: rgba(0,0,0,0.4);
-  z-index: 3;
-  padding-bottom: 10px;
-}
-
 .carousel {
   display: inline-block;
   transition: margin 0.4s;
@@ -313,9 +317,13 @@ section {
 .carousel__caption {
   position: absolute;
   bottom: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(34,34,34,0.85);
   width: 745px;
   padding: 10px;
+}
+
+.carousel__caption p {
+  margin: 0;
 }
 
 .portfolio__carousel {
@@ -334,7 +342,37 @@ section {
   float: left;
 }
 
-.portfolio__carousel__back, .portfolio__carousel__forward {
+[class^="carousel__arrow"] {
+  position: absolute;
+  top: calc(50% - 65.5px);
+  font-size: 100px;
+  cursor: pointer;
+  background: rgba(34,34,34,0.3);
+  display: inline-block;
+  vertical-align: middle;
+  z-index: 3;
+  padding-bottom: 15px;
+}
+
+[class^="carousel__arrow"]:hover {
+  background: rgba(34,34,34,0.6);
+}
+
+.carousel__arrow--left {
+  content: "\2039";
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.carousel__arrow--right {
+  content: "\203A";
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+
+
+/* .portfolio__carousel__back, .portfolio__carousel__forward {
   position: absolute;
   height: 100%;
   width: 50px;
@@ -352,7 +390,7 @@ section {
 
 .portfolio__carousel__forward {
   right: 0;
-}
+} */
 
 .portfolio__carousel__back:hover, .portfolio__carousel__forward:hover {
   background: rgba(34,34,34,0.6);
@@ -360,6 +398,36 @@ section {
 
 .portfolio__carousel__back:active, .portfolio__carousel__forward:active {
   background: rgba(34,34,34,0.8);
+}
+
+.carousel__dots__wrap {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(34,34,34,0.6);
+  z-index: 4;
+  width: 100%;
+  padding: 6px 0 3px;
+}
+
+.carousel__dots {
+  margin: 0 auto;
+}
+
+.carousel__dot {
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  margin-right: 5px;
+  transition: 0.2s background;
+}
+
+.carousel__dots__wrap .current {
+  background: white;
 }
 
 @keyframes App-logo-spin {
