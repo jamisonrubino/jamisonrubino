@@ -161,22 +161,21 @@ nav ul li:not(:last-child) {
   height: 0;
 }
 
+
+
 .ul__portfolio li:not(:last-child) {
   margin-right: 20px;
 }
 
 li.portfolio__li--blocchat {
-  /* background-image: url('../public/portfolio/blocchat/img/bloc_chat_index.jpg'); */
   background-size: cover;
 }
 
 li.portfolio__li--blocjams {
-  /* background-image: url('../public/portfolio/blocjams/img/bloc_jams_index.jpg'); */
   background-size: contain;
 }
 
 li.portfolio__li--traveltracks {
-  /* background-image: url('../public/portfolio/traveltracks/img/2.jpg'); */
   background-size: contain;
 }
 

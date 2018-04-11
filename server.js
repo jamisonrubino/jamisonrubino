@@ -5,6 +5,12 @@ const app = express()
 
 app.use('/public', express.static('public'))
 
+// read img directories, find number of files excluding "cover.jpg", & update "numSlides"
+// fs.readFileSync('/src/components/portfolio/portfolioData.js', (err, data)=>{
+//   data.
+// })
+
+
 // app.get('/traveltracks_img', (req, res) => {
 //   var imgArr = [1,2,3]
 //   res.send({"images": imgArr})
