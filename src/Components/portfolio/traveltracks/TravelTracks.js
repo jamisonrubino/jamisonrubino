@@ -33,48 +33,10 @@ export default class TravelTracks extends Component {
         blurbs.push(piece.blurbs[i-1])
       }
       this.setState({images, blurbs, summary, numSlides, slideDots: new Array(numSlides+1).join('0').split('')})
-       // console.log(this.state.images, imgPath+"1.jpg", this.props.selected, piece, imgPath, piece.imgPath)
     }
-
-    // const imgData = {
-    //   dir: 'traveltracks/img',
-    //   filetype: 'jpg'
-    // }
-
-    // fetch('/traveltracks_img')
-    // .then(res=>res.json())
-    // .then(img=>console.log(img))
-    //
-    // fetch('/pf')
-    // .then(res=>res.json())
-    // .then(img=>console.log(img))
-    //
-    // fetch('/portfolio/traveltracks/imgs')
-    //   .then(res=>{
-    //     console.log(res)
-    //     return res.json()
-    //   })
-    //   .then(images=>this.setState({images, numSlides: images.length}))
-
-
-    // fetch blurbs, console.log if images.length !== blurbs.length
-
-    // const blurbData = {
-    //   dir: '/traveltracks/blurbs',
-    //   filetype: 'txt'
-    // }
-
-    // fetch('/public/portfolio', {method: 'POST', body: JSON.stringify(blurbData)})
-    //   .then(res=>res.json())
-    //   .then(blurbs=>this.setState({blurbs},
-    //      () => this.state.images.length !== this.state.blurbs.length ? console.log("Different number of images and blurbs!", this.state.images, this.state.blurbs) : null))
-
-
 
   render() {
     if (this.props.selected==="traveltracks") {
-      // FETCH IMAGES, LOAD INTO IMAGES OBJECT
-      // console.log(images)
       let carouselStyle = {
         width: this.state.numSlides*745 + "px",
         marginLeft: this.state.carouselOffset
