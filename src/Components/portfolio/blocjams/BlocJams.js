@@ -1,20 +1,67 @@
 import React, { Component } from 'react';
+import portfolioData from './../portfolioData'
 
 export default class BlocJams extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      carouselOffset: 0,
+      images: [],
+      blurbs: [],
+      summary: "",
+      numSlides: this.props.numSlides
+    }
   }
 
+  componentDidMount() {
+    const piece = this.props.piece,
+      imgPath = piece.imgPath,
+      summary = piece.summary,
+      numSlides = piece.numSlides
+
+    let images = []
+    let blurbs = []
+    for(let i=1; i<=piece.numSlides; i++) {
+      images.push(imgPath + `${i}.jpg`)
+      blurbs.push(piece.blurbs[i-1])
+    }
+    this.setState({images, blurbs, summary, numSlides}, ()=> console.log(this.state.images, imgPath+"1.jpg", this.props.selected, piece, imgPath, piece.imgPath, portfolioData.portfolioPieces.filter(piece=>piece.slug==="blocjams")[0]))
+
+  }
+
+
+
   render() {
+    let carouselStyle = {
+      width: this.state.numSlides*745 + "px",
+      marginLeft: this.state.carouselOffset
+    }
+
+    const carousel = this.state.images.map((img,i) => {
+        return (
+          <div className="carousel__item" key={`slide${i}`}>
+           <img src={img} />
+           <div className="carousel__caption">
+             <p>{this.state.blurbs[i]}</p>
+           </div>
+         </div>
+       )
+     })
+
     if (this.props.selected==="blocjams") {
       return (
         <div className="portfolio__item__body">
-          <section className={this.props.selected === "blocjams" ? "blocjams" : ""}>
-            <p>Bloc students, to practice Javascript and JQuery, and to introduce AngularJS, build a simple Spotify-style music library with the Buzz engine, consisting of a landing page, album list, and album song list with a functional music player, which plays, pauses and skips tracks, tracking play progress with a working seek bar.</p>
+          <section className="blocjams">
+            <p className="portfolio__p">For my capstone project for Bloc’s Part-Time Web Developer bootcamp, I built TravelTracks, a Ruby-on-Rails-based app that builds you the perfect playlist for your road trip.</p>
 
-            <p>For lack of song and album work, we loaded 12 iterations of the same album in the Collection page, but a richer body of album templates would load if more were added to the catalog data.</p>
+            <div className="carousel__wrap">
+              <div className="carousel__arrow--left" onClick={() => (this.state.carouselOffset < 0) ? this.setState({carouselOffset: this.state.carouselOffset + 745}) : this.setState({carouselOffset: (this.state.numSlides-1)*-745}) }><span>&lsaquo;</span></div>
+              <div className="carousel__arrow--right" onClick={() => (this.state.carouselOffset > (this.state.numSlides-1)*-745) ? this.setState({carouselOffset: this.state.carouselOffset - 745}) : this.setState({carouselOffset: 0}) }><span>&rsaquo;</span></div>
 
-            <p>With album and song data retrieved, we attach event handlers to each song row in the album song list, so play buttons appear on hover, and toggle between play/pause when clicked. When a song plays, the player bar updates with the song’s name, artist, album, total time and time elapsed. The player bar also allows you to seek by dragging the seek thumb to your desired time, just as the volume slider allows you to set the current volume.</p>
+              <div className="carousel" style={carouselStyle}>
+                {carousel}
+              </div>
+            </div>
           </section>
         </div>
       );

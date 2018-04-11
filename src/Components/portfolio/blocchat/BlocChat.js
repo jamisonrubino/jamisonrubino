@@ -1,24 +1,66 @@
 import React, { Component } from 'react';
+import portfolioData from './../portfolioData'
 
 export default class BlocChat extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      carouselOffset: 0,
+      images: [],
+      blurbs: [],
+      summary: "",
+      numSlides: this.props.numSlides
+    }
   }
 
+  componentDidMount() {
+    const piece = this.props.piece,
+      imgPath = piece.imgPath,
+      summary = piece.summary,
+      numSlides = piece.numSlides
+
+    let images = []
+    let blurbs = []
+    for(let i=1; i<=piece.numSlides; i++) {
+      images.push(imgPath + `${i}.jpg`)
+      blurbs.push(piece.blurbs[i-1])
+    }
+    this.setState({images, blurbs, summary, numSlides}, ()=> console.log(this.state.images, imgPath+"1.jpg", this.props.selected, piece, imgPath, piece.imgPath, portfolioData.portfolioPieces.filter(piece=>piece.slug==="blocchat")[0]))
+  }
+
+
+
   render() {
+    let carouselStyle = {
+      width: this.state.numSlides*745 + "px",
+      marginLeft: this.state.carouselOffset
+    }
+
+    const carousel = this.state.images.map((img,i) => {
+        return (
+          <div className="carousel__item" key={`slide${i}`}>
+           <img src={img} />
+           <div className="carousel__caption">
+             <p>{this.state.blurbs[i]}</p>
+           </div>
+         </div>
+       )
+     })
+
     if (this.props.selected==="blocchat") {
       return (
-        <div className={"portfolio__item__body" + (this.props.selected==="blocchat" ? " portfolio__item__body--selected" : "")}>
-          <section className={this.props.selected === "blocchat" ? "blocchat" : ""}>
-            <p>Bloc students, to practice JQuery, Angular, Firebase, and Bootstrap, build a single-page chatroom app that allows users to register, visit existing chatrooms, create new chatrooms, and post in them.</p>
+        <div className="portfolio__item__body">
+          <section className="blocchat">
+            <p className="portfolio__p">For my capstone project for Bloc’s Part-Time Web Developer bootcamp, I built TravelTracks, a Ruby-on-Rails-based app that builds you the perfect playlist for your road trip.</p>
 
-            <p>For starters, we needed a Firebase database to store our rooms. From that, we fetch an array of room names and display them as links in our sidebar. To add rooms to the rooms database, we add a button next to the “Bloc Chat” title, which opens a modal dialog box (thanks, Bootstrap!), which triggers a function uploading our text to the rooms database.</p>
+            <div className="carousel__wrap">
+              <div className="carousel__arrow--left" onClick={() => (this.state.carouselOffset < 0) ? this.setState({carouselOffset: this.state.carouselOffset + 745}) : this.setState({carouselOffset: (this.state.numSlides-1)*-745}) }><span>&lsaquo;</span></div>
+              <div className="carousel__arrow--right" onClick={() => (this.state.carouselOffset > (this.state.numSlides-1)*-745) ? this.setState({carouselOffset: this.state.carouselOffset - 745}) : this.setState({carouselOffset: 0}) }><span>&rsaquo;</span></div>
 
-            <p>With our rooms set up, we needed to populate them with messages. Heading back to Firebase, we set up our messages database table, each child of which holds four object items: room ID, time, username, and message content. Now, each message submission notes the current room, time, and message content.</p>
-
-            <p>For this to be a proper chatroom app, we needed messages to be associated with usernames, so when the site loads, a modal appears to let the user choose their own username.</p>
-
-            <p>Now users can revisit the app for their messaging needs.</p>
+              <div className="carousel" style={carouselStyle}>
+                {carousel}
+              </div>
+            </div>
           </section>
         </div>
       );
