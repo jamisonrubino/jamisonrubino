@@ -207,9 +207,11 @@ li.portfolio__li--traveltracks {
   position: absolute;
   height: 30px;
   width: 100%;
-  background: rgba(34,34,34,0.85);
+  background: gold;
   bottom: 0;
   left: 0;
+  color: rgb(34,34,34);
+  font-weight: bold;
 }
 
 .portfolio__item__body {
