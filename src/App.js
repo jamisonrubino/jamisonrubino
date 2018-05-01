@@ -4,17 +4,20 @@ import { Route, Link } from 'react-router-dom'
 import './App.css';
 import Landing from './Components/Landing'
 import Portfolio from './Components/portfolio/Portfolio'
-import Services from './Components/Services'
-import Contact from './Components/Contact'
-import About from './Components/About'
+import Services from './Components/services/Services'
+import Contact from './Components/contact/Contact'
+import About from './Components/about/About'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedNavItem: null
+      selectedNavItem: 'home'
     }
     this.setNavItem = this.setNavItem.bind(this)
+    this.setNavPortfolio = this.setNavPortfolio.bind(this)
+    this.setNavServices = this.setNavServices.bind(this)
+    this.setNavContact = this.setNavContact.bind(this)
   }
 
   componentDidMount() {
@@ -24,20 +27,36 @@ class App extends Component {
   setNavItem(navItem) {
     this.setState({selectedNavItem: navItem})
   }
+  setNavPortfolio() {
+    this.setState({selectedNavItem: "portfolio"})
+  }
+  setNavServices() {
+    this.setState({selectedNavItem: "services"})
+  }
+  setNavContact() {
+    this.setState({selectedNavItem: "contact"})
+  }
 
 
 
   render() {
+    const PortfolioWithProps = props =>
+        <Portfolio {...props} updateNav={this.setNavPortfolio} />,
+        ServicesWithProps = props =>
+            <Services {...props} updateNav={this.setNavServices} />,
+        ContactWithProps = props =>
+            <Contact {...props} updateNav={this.setNavContact} />
+
     return (
       <div className="App">
-        <header className="App-header">
-          <h1><Link to="/" className="header__h1" onClick={()=>this.setState({selectedNavItem: null})}>Jamison Rubino</Link></h1>
+        <header className="header">
+          <div className="header__home">
+            <h1><Link to="/" className="header__home__link" onClick={()=>this.setState({selectedNavItem: 'home'})}>Jamison Rubino</Link></h1>
+            <span className={"header__home__tagline" + (this.state.selectedNavItem === "home" ? "--selected" : "") }>JUNIOR WEB DEVELOPER</span>
+          </div>
           <nav>
             <ul>
-              <Link to="/about"><li
-                onClick={()=>this.setNavItem("about")}
-                className={(this.state.selectedNavItem === 'about' ? 'selected' : '')}>About</li></Link>
-              <Link to="/portfolio/"><li
+              <Link to="/portfolio"><li
                 onClick={()=>this.setNavItem("portfolio")}
                 className={(this.state.selectedNavItem === 'portfolio' ? 'selected' : '')}>Portfolio</li></Link>
               <Link to="/services"><li
@@ -50,11 +69,10 @@ class App extends Component {
           </nav>
         </header>
         <div className="content">
-          <Route exact path="/" component={Landing} />
-          <Route path="/about" component={About} />
-          <Route path="/portfolio/:piece?" component={Portfolio} />
-          <Route path="/services" component={Services} />
-          <Route path="/contact" component={Contact} />
+          <Route exact path="/" component={About} />
+          <Route path="/portfolio/:piece?" component={PortfolioWithProps} />
+          <Route path="/services" component={ServicesWithProps} />
+          <Route path="/contact" component={ContactWithProps} />
         </div>
       </div>
     );

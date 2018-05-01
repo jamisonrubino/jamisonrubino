@@ -1,6 +1,21 @@
+:root {
+  --primary-color: #222;
+  --secondary-color: #ddd;
+  --accent-color: gold;
+  --parent-padding: ;
+  --child-padding: ;
+  --parent-margin: ;
+  --child-margin: ;
+  --text-primary-color: ;
+  --text-secondary-color: ;
+
+  /* ------------- usage -------------
+    background-color: var(--secondary-color);  */
+}
+
+
 * {
   box-sizing: border-box;
-
 }
 
 html, body {
@@ -11,29 +26,63 @@ header {
 }
 
 header h1 {
-  margin: 0 40px;
+
 }
 
-a.header__h1 {
-  cursor: pointer;
-  color: white;
-  text-decoration: none;
-}
-
-a.header__h1:active {
-  color: gold;
-}
 
 .App {
   text-align: center;
 }
 
-.App-header {
+.header {
   background-color: #222;
   height: 130px;
   padding: 40px 20px 20px 20px;
   color: white;
 }
+
+.header__home {
+  display: inline-block;
+  padding: 0 40px;
+}
+
+.header__home h1 {
+  margin: 0;
+}
+
+.header__home__link {
+  display: block;
+}
+
+
+.header__home__tagline, .header__home__tagline--selected {
+  display: block;
+  text-align: left;
+  margin: 0;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: lightgray;
+  transition: 0.3s color, 0.3s transform, 0.3s margin;
+}
+
+.header__home__tagline--selected {
+    color: var(--accent-color);
+    transform: scale(1.4, 1.166);
+    margin-left: 41px;
+}
+
+a.header__home__link {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+a.header__h1:active {
+  color: var(--accent-color);
+}
+
+
 
 
 
@@ -49,8 +98,15 @@ h1 {
   margin-top: 0;
 }
 
+
+
 nav, header h1, nav ul li {
   display: inline-block;
+}
+
+nav {
+  vertical-align: top;
+  padding-top: 10px;
 }
 
 nav ul {
@@ -70,7 +126,7 @@ nav ul li {
 nav ul li::after {
   content: "";
   position: absolute;
-  background: gold;
+  background: var(--accent-color);
   width: 0;
   height: 3px;
   display: block;
@@ -91,7 +147,7 @@ nav ul li:hover::after {
 nav ul li.selected::after {
   content: "";
   position: absolute;
-  background: gold;
+  background: var(--accent-color);
   width: 100%;
   height: 3px;
   display: block;
@@ -103,13 +159,13 @@ nav ul li:not(:last-child) {
 }
 
 .selected {
-  color: gold;
+  color: var(--accent-color);
 }
 
 .selected::after {
   content: "";
   position: absolute;
-  background: gold;
+  background: var(--accent-color);
   width: 30px;
   height: 3px;
   display: block;
@@ -120,81 +176,90 @@ nav ul li:not(:last-child) {
   width: 100%;
   height: 100%;
   background: #ddd;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .content h1 {
   margin-top: 30px;
 }
 
-.ul__portfolio {
+/* ----------- PORTFOLIO ----------- */
+
+.portfolio__ul {
   padding: 0;
+  margin: 30px 0;
 }
 
-.ul__portfolio a:not(:last-child) {
+.portfolio__ul a:not(:last-child) {
   margin-right: 15px;
 }
 
-.ul__portfolio li {
+[class^="portfolio__li"] {
   list-style-type: none;
   display: inline-block;
   width: 250px;
   height: 250px;
   border: 1px solid #777;
-  margin-bottom: 30px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
+  -webkit-filter: saturate(0);
+  filter: saturate(0);
+  transition: 0.3s filter, 0.3s -webkit-filter !important;
 }
 
-.ul__portfolio li::before {
-  position: absolute;
-  height: 0;
-  width: 100%;
-  background: rgba(34,34,34,0.85);
-  bottom: -5px;
-  left: 0;
-  transition: 0.4s height, 0.4s bottom;
-  color: white;
-  box-sizing: border-box;
-  padding: 5px 0;
-  height: 0;
-}
-
-
-
-.ul__portfolio li:not(:last-child) {
+[class^="portfolio__li"]:not(:last-child) {
   margin-right: 20px;
 }
 
-li.portfolio__li--blocchat {
+[class^="portfolio__li"]:not(.portfolio__li--selected):hover {
+  filter: saturate(40%);
+  -webkit-filter: saturate(40%);
+}
+
+.portfolio__li--selected {
+  filter: saturate(100%);
+  -webkit-filter: saturate(100%);
+}
+
+[class^="portfolio__li"]::before {
+  position: absolute;
+  width: 100%;
+  background: rgba(34,34,34,0.85);
+  bottom: -30px;
+  left: 0;
+  color: white;
+  box-sizing: border-box;
+  padding: 5px 0;
+  transition: 0.4s height ease-out, 0.4s bottom;
+}
+
+.portfolio__li--blocchat {
   background-size: cover;
 }
 
-li.portfolio__li--blocjams {
+.portfolio__li--blocjams {
   background-size: contain;
 }
 
-li.portfolio__li--traveltracks {
+.portfolio__li--traveltracks {
   background-size: contain;
 }
 
-
-.ul__portfolio li.portfolio__li--blocchat::before {
+.portfolio__li--blocchat::before {
   content: "Bloc Chat";
 }
 
-.ul__portfolio li.portfolio__li--traveltracks::before {
+.portfolio__li--traveltracks::before {
   content: "TravelTracks";
 }
 
-.ul__portfolio li.portfolio__li--blocjams::before {
+.portfolio__li--blocjams::before {
   content: "Bloc Jams";
 }
 
-.ul__portfolio li:hover::before {
+[class^="portfolio__li"]:not(.portfolio__li--selected):hover::before {
   position: absolute;
-  height: 30px;
   width: 100%;
   opacity: 1;
   background: rgba(34,34,34,0.85);
@@ -202,15 +267,24 @@ li.portfolio__li--traveltracks {
   left: 0;
 }
 
-.ul__portfolio li.portfolio__li--selected::before {
+.portfolio__li--selected::before {
   position: absolute;
   height: 30px;
   width: 100%;
-  background: gold;
+  background: var(--accent-color);
   bottom: 0;
   left: 0;
   color: rgb(34,34,34);
   font-weight: bold;
+}
+
+
+
+.portfolio__item__wrap {
+  width: 100%;
+  padding: 0;
+  background: #222;
+
 }
 
 .portfolio__item__body {
@@ -224,7 +298,7 @@ li.portfolio__li--traveltracks {
   margin-bottom: 25px;
 }
 
-section {
+section.portfolio__item__wrap section {
   width: 960px;
   margin: 0 auto;
   padding: 30px 0;
@@ -234,35 +308,23 @@ section {
   animation:         roll-in 0.55s 1; /* IE 10+, Fx 29+ */
 }
 
+.blocchat::before, .traveltracks::before, .blocjams::before {
+   position: absolute;
+   content: "";
+   width: 30px;
+   height: 30px;
+   background: #222;
+   transform: rotate(45deg);
+   top: -15px;
+ }
 
 .blocchat::before {
-  position: absolute;
-  content: "";
-  width: 30px;
-  height: 30px;
-  background: #222;
-  transform: rotate(45deg);
-  top: -15px;
   left: calc(50% - 281px);
 }
 .traveltracks::before {
-  position: absolute;
-  content: "";
-  width: 30px;
-  height: 30px;
-  background: #222;
-  transform: rotate(45deg);
-  top: -15px;
   left: calc(50% - 10px);
 }
 .blocjams::before {
-  position: absolute;
-  content: "";
-  width: 30px;
-  height: 30px;
-  background: #222;
-  transform: rotate(45deg);
-  top: -15px;
   left: calc(50% + 255px);
 }
 
@@ -272,20 +334,9 @@ section {
   margin: 0 auto;
 }
 
-.portfolio__carousel__wrap--traveltracks {
-  /*width: imageNum*600px; */
-}
-
-.portfolio__carousel__wrap--blocjams {
-  /*width: imageNum*600px; */
-}
-
-.portfolio__carousel__wrap--blocchat {
-  /*width: imageNum*600px; */
-}
 
 
-/*        CAROUSEL        */
+/* ----------- CAROUSEL ----------- */
 
 .carousel__wrap {
   width: 745px;
@@ -298,8 +349,7 @@ section {
 
 .carousel {
   display: inline-block;
-  transition: margin 0.4s;
-  transition-timing-function: ease-out;
+  transition: margin 0.4s ease-out;
   position: relative;
 }
 
@@ -345,8 +395,8 @@ section {
 
 [class^="carousel__arrow"] {
   position: absolute;
-  top: calc(50% - 65.5px);
-  font-size: 100px;
+  top: calc(50% - 54px);
+  font-size: 80px;
   cursor: pointer;
   background: rgba(34,34,34,0.3);
   display: inline-block;
@@ -409,7 +459,7 @@ section {
   background: rgba(34,34,34,0.6);
   z-index: 4;
   width: 100%;
-  padding: 6px 0 3px;
+  padding: 4px 0 2px;
 }
 
 .carousel__dots {
@@ -420,16 +470,41 @@ section {
   display: inline-block;
   border-radius: 50%;
   border: 1px solid white;
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   background: transparent;
   margin-right: 5px;
   transition: 0.2s background;
 }
 
 .carousel__dots__wrap .current {
-  background: white;
+  background: rgba(255,255,255,0.6);
 }
+
+
+/* --------------- SERVICES --------------- */
+
+.green {
+  font-weight: bold;
+  color: lightgreen;
+  background: darkgray;
+  padding: 0 4px;
+}
+
+.yellow {
+  font-weight: bold;
+  color: yellow;
+  background: darkgray;
+  padding: 0 4px;
+}
+
+h3.green, h3.yellow {
+  display: block;
+  width: fit-content;
+  margin: 15px auto;
+}
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
