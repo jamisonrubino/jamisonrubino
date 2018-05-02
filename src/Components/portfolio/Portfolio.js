@@ -12,12 +12,18 @@ export default class Portfolio extends Component {
     this.state = {
       portfolioPiece: null
     }
+    this.updateNav = this.updateNav.bind(this)
   }
 
   componentDidMount() {
-    this.props.updateNav
+    // this.updateNav()
     this.setState({portfolioPiece: this.props.match.params.piece})
   }
+
+  updateNav() {
+    this.props.updateNav("portfolio")
+  }
+
 
 
   render() {
@@ -58,18 +64,15 @@ export default class Portfolio extends Component {
 
 
     return (
-        <div className="div__porfolio">
+        <div className="div__portfolio">
           <ul className="portfolio__ul">
             <Link to="/portfolio/blocchat"><li className={"portfolio__li--blocchat" + (this.props.match.params.piece === "blocchat" ? " portfolio__li--selected" : "")} style={blocChatStyle}></li></Link>
             <Link to="/portfolio/traveltracks"><li className={"portfolio__li--traveltracks" + (this.props.match.params.piece === "traveltracks" ? " portfolio__li--selected" : "")} style={travelTracksStyle}></li></Link>
             <Link to="/portfolio/blocjams"><li className={"portfolio__li--blocjams" + (this.props.match.params.piece === "blocjams" ? " portfolio__li--selected" : "")} style={blocJamsStyle}></li></Link>
           </ul>
-
-          <section className="portfolio__item__wrap">
-            <Route path="/portfolio/blocchat" component={BlocChatWithProps} />
-            <Route path="/portfolio/blocjams" component={BlocJamsWithProps} />
-            <Route path="/portfolio/traveltracks" component={TravelTracksWithProps} />
-          </section>
+          <Route path="/portfolio/blocchat" component={BlocChatWithProps} />
+          <Route path="/portfolio/blocjams" component={BlocJamsWithProps} />
+          <Route path="/portfolio/traveltracks" component={TravelTracksWithProps} />
         </div>
       );
 

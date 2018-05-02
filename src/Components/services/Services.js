@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 export default class Contact extends Component {
   render() {
       return (
-        <div className="services">
+        <div className="div__services">
           <p>
             I'm <span className="green">proficient</span> in <b>HTML</b>, <b>CSS</b>, <b>Javascript</b>, <b>React</b>, <b>Angular1</b>, <b>Ruby on Rails</b>, <b>PHP</b>, and <b>SQL</b>.
           </p>

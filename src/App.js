@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import $ from 'jquery'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 import './App.css';
-import Landing from './Components/Landing'
+import Nav from './Components/Nav'
 import Portfolio from './Components/portfolio/Portfolio'
 import Services from './Components/services/Services'
 import Contact from './Components/contact/Contact'
@@ -24,8 +23,8 @@ class App extends Component {
     console.log(this.props)
   }
 
-  setNavItem(navItem) {
-    this.setState({selectedNavItem: navItem})
+  setNavItem(selectedNavItem) {
+    this.setState({selectedNavItem})
   }
   setNavPortfolio() {
     this.setState({selectedNavItem: "portfolio"})
@@ -41,33 +40,16 @@ class App extends Component {
 
   render() {
     const PortfolioWithProps = props =>
-        <Portfolio {...props} updateNav={this.setNavPortfolio} />,
+        <Portfolio {...props} updateNav={this.setNavItem} setNavPortfolio={this.setNavPortfolio} />,
         ServicesWithProps = props =>
             <Services {...props} updateNav={this.setNavServices} />,
         ContactWithProps = props =>
-            <Contact {...props} updateNav={this.setNavContact} />
+            <Contact {...props} updateNav={this.setNavContact} />,
+        NavWithRoute = withRouter(props => <Nav {...props} updateNav={this.setNavItem} />)
 
     return (
       <div className="App">
-        <header className="header">
-          <div className="header__home">
-            <h1><Link to="/" className="header__home__link" onClick={()=>this.setState({selectedNavItem: 'home'})}>Jamison Rubino</Link></h1>
-            <span className={"header__home__tagline" + (this.state.selectedNavItem === "home" ? "--selected" : "") }>JUNIOR WEB DEVELOPER</span>
-          </div>
-          <nav>
-            <ul>
-              <Link to="/portfolio"><li
-                onClick={()=>this.setNavItem("portfolio")}
-                className={(this.state.selectedNavItem === 'portfolio' ? 'selected' : '')}>Portfolio</li></Link>
-              <Link to="/services"><li
-                onClick={()=>this.setNavItem("services")}
-                className={(this.state.selectedNavItem === 'services' ? 'selected' : '')}>Services</li></Link>
-              <Link to="/contact"><li
-                onClick={()=>this.setNavItem("contact")}
-                className={(this.state.selectedNavItem === 'contact' ? 'selected' : '')}>Contact</li></Link>
-            </ul>
-          </nav>
-        </header>
+        <NavWithRoute />
         <div className="content">
           <Route exact path="/" component={About} />
           <Route path="/portfolio/:piece?" component={PortfolioWithProps} />

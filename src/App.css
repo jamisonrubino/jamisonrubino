@@ -13,21 +13,32 @@
     background-color: var(--secondary-color);  */
 }
 
+/* ------------- GENERAL ------------- */
 
 * {
   box-sizing: border-box;
+
 }
 
 html, body {
   height: 100%;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 header {
 }
 
 header h1 {
-
+  font-size: 33px;
 }
+
+[class^="header__home__tagline"] {
+  font-size: 13px !important;
+}
+
 
 
 .App {
@@ -55,7 +66,7 @@ header h1 {
 }
 
 
-.header__home__tagline, .header__home__tagline--selected {
+[class^="header__home__tagline"] {
   display: block;
   text-align: left;
   margin: 0;
@@ -65,13 +76,13 @@ header h1 {
   transition: 0.3s color, 0.3s transform, 0.3s margin;
 }
 
-.header__home__tagline--selected {
+.header__home__tagline--selected, .header__home__link:active + [class^="header__home__tagline"] {
     color: var(--accent-color);
     transform: scale(1.4, 1.166);
     margin-left: 41px;
 }
 
-a.header__home__link {
+h1.header__home__link a {
   cursor: pointer;
   color: white;
   text-decoration: none;
@@ -144,6 +155,16 @@ nav ul li:hover::after {
   margin-top: -1px;
 }
 
+nav ul li:active::after {
+  content: "";
+  position: absolute;
+  background: var(--accent-color);
+  width: 100%;
+  height: 3px;
+  display: block;
+  margin-top: -1px;
+}
+
 nav ul li.selected::after {
   content: "";
   position: absolute;
@@ -183,11 +204,14 @@ nav ul li:not(:last-child) {
   margin-top: 30px;
 }
 
+.div__portfolio, .div__services, .div__contact {
+  padding: 30px 0 !important;
+}
+
 /* ----------- PORTFOLIO ----------- */
 
 .portfolio__ul {
   padding: 0;
-  margin: 30px 0;
 }
 
 .portfolio__ul a:not(:last-child) {
@@ -284,6 +308,7 @@ nav ul li:not(:last-child) {
   width: 100%;
   padding: 0;
   background: #222;
+  margin-top: 30px;
 
 }
 
