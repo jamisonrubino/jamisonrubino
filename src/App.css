@@ -241,7 +241,7 @@ nav ul li:not(:last-child) {
   -webkit-filter: saturate(40%);
 }
 
-.portfolio__li--selected {
+.portfolio__li--selected, .portfolio__ul a:active [class^="portfolio__li"] {
   filter: saturate(100%);
   -webkit-filter: saturate(100%);
 }

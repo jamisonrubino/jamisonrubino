@@ -14,11 +14,9 @@ export default class Portfolio extends Component {
   updateNav() {
     const path = this.props.location.pathname.split('/').filter(x=>x.length > 0)[0]
     this.setState({selectedNavItem: path})
-    console.log(path)
   }
 
   setNav(navItem) {
-    console.log("nav item: ", navItem)
     this.setState({selectedNavItem: navItem})
   }
 
